@@ -1,0 +1,28 @@
+{
+  "name": "pi-rdp-gui",
+  "productName": "",
+  "version": "1.0.0",
+  "description": "Baut eine Verbindung mit den eingebenen Daten zu einem RDP Server auf",
+  "author": {
+    "name": "Dennis Zapp",
+    "email": "d.zapp@it-dlz.saarland.de"
+  },
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . pi-rdp-gui --overwrite --asar=true --platform=win32 --arch=x64 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds  --version-string.ProductName=\"Pi RDP GUI\"",    
+    "package-pi": "electron-packager . pi-rdp-gui --overwrite --asar=true --platform=linux --arch=armv7l --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^10.1.1",
+    "electron-builder": "^22.8.0",
+    "electron-packager": "^15.1.0",
+    "electron-reload": "^1.5.0"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}

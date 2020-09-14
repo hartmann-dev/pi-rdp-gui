@@ -1,0 +1,116 @@
+html,
+body {
+  color: #d3d7de;
+  background-color: #091a46;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font: caption;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 40%;
+  height: 40%;
+  margin: 0 10px;
+  max-width: 400px;
+  max-height: 300px;
+}
+
+.box.avatar {
+  background: transparent url("../img/user.jpg") right center no-repeat;
+  background-size: contain;
+}
+
+.box h2 {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+  font-weight: 100;
+  font-size: 32px;
+  letter-spacing: 1.5px;
+}
+
+#login-form label,
+h1 {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#login-form input {
+  padding: 10px;
+  width: 100%;
+  margin-top: 8px;
+  background-color: #ced2da;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+#login-form input:focus {
+  background-color: white;
+  outline: none;
+}
+
+.button-inside {
+  position: relative;
+}
+
+button {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  border: none;
+  height: 38px;
+  width: 38px;
+  outline: none;
+  background: transparent url("../img/arrow-right.jpg") center center no-repeat;
+  background-size: contain;
+}
+button:hover {
+  cursor: pointer;
+}
+
+
+#debug, #msg{
+  display: none;
+  background-color: white;
+  color: black;
+  font-size: 12px;
+  line-height: 1.3em;
+  padding: 5px;
+  margin: 0;
+  list-style: none;
+}
+
+#msg .error{
+  color: red;
+}
+
+#debug {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  z-index: 100;
+  overflow: scroll;
+
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  font-size: 12px;
+  margin: 12px;
+}

@@ -1,0 +1,31 @@
+{
+    "debug": true,
+    "copyright": "&copy; 2020 - Dennis Zapp",
+    "domain": "LUA",
+    "command1": {
+        "binary": "ping",
+        "username": "",
+        "password": "",
+        "args": [
+            "-c 5"
+        ]
+    },
+    "command": {
+        "binary": "xfreerdp",
+        "username": "/u:",
+        "password": "/p:",
+        "args": [
+            "/d:lua.saarland.de",
+            "/v:WTSUMWELT.lua.saarland.de",
+            "/sec:nla",
+            "/cert-ignore",
+            "/network:auto +multitransport",
+            "/f",
+            "/bpp:24",
+            "/multimon:force",
+            "/sound:sys:alsa",
+            "/gfx:RFX +gfx-small-cache"
+        
+        ]
+    }
+}
