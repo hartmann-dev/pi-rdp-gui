@@ -56,7 +56,9 @@ ipcMain.on('get-config', (event) => {
   event.sender.send('send-config', config);
 });
 
-
+ipcMain.on('close-app', (evt, arg) => {
+  app.quit()
+})
 
 
 // In this file you can include the rest of your app's specific main process

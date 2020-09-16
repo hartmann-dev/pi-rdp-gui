@@ -42,7 +42,7 @@ ipcRenderer.on('send-config', (event, arg) => {
             if(username && password){
                 
                 const args = get_args(username, password);
-                const response = exec_cmd(config.command.binary, args);
+                const repsone = exec_cmd(config.command.binary, args);
                 parse_response(response);
 
                                 
@@ -104,5 +104,10 @@ ipcRenderer.on('send-config', (event, arg) => {
 
         });
         return response;    
+    }
+
+    const parse_response = response => {
+        debug(response);
+        
     }
 }));
