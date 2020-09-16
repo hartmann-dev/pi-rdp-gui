@@ -3,7 +3,7 @@
 const { app, BrowserWindow, ipcMain} = require("electron");
 const path = require('path');
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync(path.join(__dirname, process.env.NODE_ENV == 'dev' ? '/config/config.json' : '/resources/config/config.json')));
+const config = JSON.parse(fs.readFileSync(path.join(__dirname, process.env.NODE_ENV == 'dev' ? '/config/config.json' : '/config/config.json')));
 
 
 function createWindow() {
