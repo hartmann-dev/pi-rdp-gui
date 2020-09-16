@@ -1,5 +1,7 @@
 const { ipcRenderer } = require('electron');
 const spawn = require("child_process").spawn;
+
+
 window.$ = window.jQuery = require('jquery');
 
 let config;
@@ -13,7 +15,7 @@ ipcRenderer.on('send-config', (event, arg) => {
     app(window.jQuery, window, document, config, spawn);
 }(function($, window, document) {
     $(function() {
-        debug("config: " + JSON.stringify(config));
+        debug("Read config: " + JSON.stringify(config));
         const domain = $('#domain-target');
         domain.html(config.domain);
         
@@ -36,13 +38,12 @@ ipcRenderer.on('send-config', (event, arg) => {
             $("#msg").hide();
             const username = $( "input[name='username']" ).val();
             const password = $( "input[name='password']" ).val();
-
-            //debug("Benutzername: " +  username);
-            //debug("Passwort: " +  password);
+            debug("Anmdeleversuch")
             if(username && password){
-                const args = get_command(username, password);
-                const repsone = exec_cmd(config.command.binary, args);
-                debug(response);
+                
+                const args = get_args(username, password);
+                const response = exec_cmd(config.command.binary, args);
+                parse_response(response);
 
                                 
             } else {
@@ -73,28 +74,35 @@ ipcRenderer.on('send-config', (event, arg) => {
         $("#msg").html(`<li class="${type}">${msg}</li>`).show();
     }
 
-    const get_command = (username, password) => {
+    const get_args = (username, password) => {
         const cmd_config = config.command;
-        command = [`${cmd_config.username}${username}`, `${cmd_config.password}${password}`]
+        let args = [`${cmd_config.username}${username}`, `${cmd_config.password}${password}`]
         if(cmd_config.args)
-           command = command.concat(cmd_config.args);
-        return command;
+            args = args.concat(cmd_config.args);
+        return args;
     }
+
     const exec_cmd = (cmd, args) => {
         const ls = spawn(cmd, args, {shell: true});
         debug(`exec commmand ${cmd} ${args.join( " " )}`);
         
+        let response = '';
+
         ls.stdout.on('data', (data) => {
             debug(`stdout: ${data}`);
+            response = data;
         });
         
         ls.stderr.on('data', (data) => {
             debug(`stderr: ${data}`);
+            response = data;
         });
         
         ls.on('close', (code) => {
             debug(`child process exited with code ${code}`);
+            ipcRenderer.send('close-app')
+
         });
-        return "a";
+        return response;    
     }
 }));
