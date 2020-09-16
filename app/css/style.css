@@ -87,12 +87,24 @@ button:hover {
   display: none;
   background-color: white;
   color: black;
-  font-size: 12px;
   line-height: 1.3em;
   padding: 5px;
-  margin: 0;
   list-style: none;
 }
+
+#debug {
+  font-size: 12px;
+  margin: 0;
+}
+
+#msg{
+  padding: 10px;
+  width: 100%;
+  margin-top: 8px;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
 
 #msg .error{
   color: red;
