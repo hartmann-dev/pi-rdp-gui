@@ -42,9 +42,8 @@ ipcRenderer.on('send-config', (event, arg) => {
             if(username && password){
                 
                 const args = get_args(username, password);
-                const repsone = exec_cmd(config.command.binary, args);
-                parse_response(response);
-
+                exec_cmd(config.command.binary, args);
+                
                                 
             } else {
                 if(!username)
@@ -90,24 +89,29 @@ ipcRenderer.on('send-config', (event, arg) => {
 
         ls.stdout.on('data', (data) => {
             debug(`stdout: ${data}`);
-            response = data;
+            parse_response(data.toString());
+
         });
         
         ls.stderr.on('data', (data) => {
             debug(`stderr: ${data}`);
-            response = data;
+            parse_response(data.toString());
         });
         
         ls.on('close', (code) => {
             debug(`child process exited with code ${code}`);
-            ipcRenderer.send('close-app')
+            //ipcRenderer.send('close-app')
 
         });
         return response;    
     }
 
     const parse_response = response => {
-        debug(response);
+        if(response.search('ERRINFO_LOGOFF_BY_USER') > 0){
+            ipcRenderer.send('close-app');
+        }if(response.search('ERRCONNECT_LOGON_FAILURE') > 0){
+            print_msg("Benutzername oder Kennwort falsch", "error");
+        }
         
     }
 }));
