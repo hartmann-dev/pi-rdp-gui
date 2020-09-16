@@ -1,6 +1,6 @@
 {
     "debug": true,
-    "copyright": "&copy; 2020 - Dennis Zapp",
+    "copyright": "IT-Support-Umwelt@it-dlz.saarland.de",
     "domain": "LUA",
     "command1": {
         "binary": "ping",
