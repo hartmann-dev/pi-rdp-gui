@@ -81,7 +81,7 @@ ipcRenderer.on('send-config', (event, arg) => {
         return command;
     }
     const exec_cmd = (cmd, args) => {
-        const ls = spawn(cmd, args);
+        const ls = spawn(cmd, args, {shell: true});
         debug(`exec commmand ${cmd} ${args.join( " " )}`);
         
         ls.stdout.on('data', (data) => {
